@@ -5,6 +5,8 @@ from routers.categoria_router import router as categorias_router
 from routers.producto_router import router as productos_router
 from routers.rol_router import router as roles_router
 from routers.usuario_router import router as usuarios_router
+from oauth.oauth import router as oauth_router
+
 import models
 
 @asynccontextmanager
@@ -24,3 +26,4 @@ app.include_router(categorias_router, tags=["categorias"])
 app.include_router(productos_router, tags=["productos"])
 app.include_router(roles_router, tags=["roles"])
 app.include_router(usuarios_router, tags=['usuarios'])
+app.include_router(oauth_router, tags=['oauth'])
