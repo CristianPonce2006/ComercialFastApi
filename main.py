@@ -3,6 +3,8 @@ from contextlib import asynccontextmanager
 from config.db import crear_db_y_tablas
 from routers.categoria_router import router as categorias_router
 from routers.producto_router import router as productos_router
+from routers.rol_router import router as roles_router
+from routers.usuario_router import router as usuarios_router
 import models
 
 @asynccontextmanager
@@ -20,3 +22,5 @@ async def home():
 
 app.include_router(categorias_router, tags=["categorias"])
 app.include_router(productos_router, tags=["productos"])
+app.include_router(roles_router, tags=["roles"])
+app.include_router(usuarios_router, tags=['usuarios'])
