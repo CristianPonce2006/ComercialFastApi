@@ -16,7 +16,7 @@ async def get_categorias(session: SessionDeDependencia, offset: int = Query(0, g
 @router.get("/categorias/{id}", response_model=Categoria, status_code=status.HTTP_200_OK)
 async def get_categoria(id: int,session: SessionDeDependencia):
     consulta = select(Categoria).where(Categoria.id == id)
-    resultado_consulta = session.exec(consulta)
+    resultado_consulta = session.exec(consulta).first()
     if not resultado_consulta:
         raise HTTPException(status_code=404, detail="Categoria no encontrada")
     return resultado_consulta
