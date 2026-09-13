@@ -15,8 +15,8 @@ class ProductoBase(SQLModel):
 class Producto(ProductoBase, table=True):
     __tablename__ = "productos" #type: ignore pa que no aparezca error
     id: int | None = Field(default=None, primary_key=True)
-    created_at: datetime | None = Field(default=datetime.now())
-    update_at: datetime | None = Field(default=datetime.now())
+    created_at: datetime | None = Field(default_factory=datetime.now)
+    update_at: datetime | None = Field(default_factory=datetime.now)
 
 class ProductoCreate(ProductoBase):
     pass
