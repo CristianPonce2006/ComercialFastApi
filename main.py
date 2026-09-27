@@ -1,4 +1,5 @@
 from fastapi import FastAPI, status
+from fastapi.middleware.cors import CORSMiddleware
 from contextlib import asynccontextmanager
 from config.db import crear_db_y_tablas
 from routers.categoria_router import router as categorias_router
@@ -21,6 +22,12 @@ async def lifespan(app: FastAPI):
 app = FastAPI(lifespan=lifespan)
 app.title = "API Tienda X"
 app.version = "0.0.1"
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @app.get("/", summary="Comprobando Api", status_code=status.HTTP_200_OK)
 async def home():
